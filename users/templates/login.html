@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}}
+{% block content %} 
+    <div class="content-section">
+        <div class="container">
+            <form action = "/login/" method="post">
+                {% csrf_token %}
+                {% if error %}
+                <div class="row">
+                    <p style="color: rgb(235, 0, 0);">*{{error}}</p>
+                </div>
+                {% endif %}
+                <!-- Username -->
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Username</label>
+                  <input required type="name" name="username" class="form-control" id="exampleInputEmail1" value="{{values.email}}" aria-describedby="emailHelp">
+                </div>
+                <!-- Password -->
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input required name="password" type="password" class="form-control" id="exampleInputPassword1" value="{{values.password}}" >
+                </div>
+                <div class="row center" style=" font-size: 18px !important;">
+                    <div class="col-md-4" style="vertical-align: middle;">
+                        <p class="" style="vertical-align: middle; margin-bottom: 0%;"><a href="/create-account-recruiter">Create Account</a></p>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <!-- Button -->
+                    <div class="col-md-4">
+                        <button type="submit" class="top-section-button" style="background-color: #2e9191; border-radius: 5px !important; width: 80% !important; height: auto; font-size: 18px; font-weight: 600 !important;" value="">Sign in</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Don't Have An Account? <a class="ml-2" href="{% url 'register' %}">Sign up</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}
